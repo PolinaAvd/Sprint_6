@@ -1,4 +1,4 @@
-from selenium import webdriver
+
 import pytest
 from pages.main_page import VoprosiOVazhnom
 import settings
