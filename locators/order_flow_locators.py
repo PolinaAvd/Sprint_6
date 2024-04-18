@@ -4,7 +4,6 @@ class OrderFlowLocators:
 
     UPPER_ZAKAZAT = (By.XPATH, ".//button[@class = 'Button_Button__ra12g']") # Кнопка Заказать наверху главной страницы
     LOWER_ZAKAZAT = (By.XPATH, ".//div[@class = 'Home_FinishButton__1_cWm']/button[text() = 'Заказать']") # Кнопка Заказать внизу главной страницы
-    DLYA_KOGO_SAMOKAT = (By.XPATH, "//*[@class = 'Order_Header__BZXOb']") # Локатор с тексом Для кого самокат  на странице /order
     ORDER_NAME = (By.XPATH, "//*[@placeholder = '* Имя']") # Поле Имя на первой странице оформления заказа
     ORDER_SURNAME = (By.XPATH, "//*[@placeholder = '* Фамилия']") # Поле Фамилия на первой странице оформления заказа
     ORDER_ADDRESS = (By.XPATH, "//*[@placeholder = '* Адрес: куда привезти заказ']") # Поле Адрес на первой странице оформления заказа

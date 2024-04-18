@@ -4,54 +4,50 @@ from pages.main_page import VoprosiOVazhnom
 import settings
 from locators.main_page_locators import MainLocators
 
+
 class TestVoprosiOVazhnom:
-    driver = None
-    @classmethod
-    def setup_class(cls):
-        cls.driver = webdriver.Firefox()
 
-    @pytest.mark.parametrize('text_of_question, locator', [('Сколько это стоит? И как оплатить?',
+
+    @pytest.mark.parametrize('text_of_question, locator', [(settings.text_of_question_1,
                                                             MainLocators.PERVIY_VOPROS),
-                                                           ('Хочу сразу несколько самокатов! Так можно?',
+                                                           (settings.text_of_question_2,
                                                             MainLocators.VTOROI_VOPROS),
-                                                            ('Как рассчитывается время аренды?',
+                                                            (settings.text_of_question_3,
                                                              MainLocators.TRETIY_VOPROS),
-                                                            ('Можно ли заказать самокат прямо на сегодня?',
+                                                            (settings.text_of_question_4,
                                                              MainLocators.CHETVERTIY_VOPROS),
-                                                           ('Можно ли продлить заказ или вернуть самокат раньше?',
+                                                           (settings.text_of_question_5,
                                                             MainLocators.PIATIY_VOPROS),
-                                                           ('Вы привозите зарядку вместе с самокатом?',
+                                                           (settings.text_of_question_6,
                                                             MainLocators.SHESTOY_VOPROS),
-                                                           ('Можно ли отменить заказ?',
+                                                           (settings.text_of_question_7,
                                                             MainLocators.SEDMOY_VOPROS),
-                                                           ('Я жизу за МКАДом, привезёте?',
-                                                            MainLocators.VOSMOY_VOPROS)
-                                                           ])
+                                                           (settings.text_of_question_8,
+                                                            MainLocators.VOSMOY_VOPROS)])
 
-    def test_check_text_of_question(self, text_of_question, locator):
-        self.driver.get(settings.MAIN_PAGE_URL)
-        question_text = VoprosiOVazhnom(self.driver)
+    def test_check_text_of_question(self, driver, text_of_question, locator):
+        question_text = VoprosiOVazhnom(driver)
         assert question_text.get_text_of_the_question(locator) == text_of_question
-    @pytest.mark.parametrize('text_of_reply, locator, reply', [('Сутки — 400 рублей. Оплата курьеру — наличными или картой.',
-                                                            MainLocators.PERVIY_VOPROS, MainLocators.PERVIY_OTVET),
-                                                               ('Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим.',
+
+
+    @pytest.mark.parametrize('text_of_reply, locator, reply', [(settings.text_of_reply_1,
+                                                                MainLocators.PERVIY_VOPROS, MainLocators.PERVIY_OTVET),
+                                                               (settings.text_of_reply_2,
                                                                MainLocators.VTOROI_VOPROS, MainLocators.VTOROI_OTVET),
-                                                               ('Допустим, вы оформляете заказ на 8 мая. Мы привозим самокат 8 мая в течение дня. Отсчёт времени аренды начинается с момента, когда вы оплатите заказ курьеру. Если мы привезли самокат 8 мая в 20:30, суточная аренда закончится 9 мая в 20:30.',
+                                                               (settings.text_of_reply_3,
                                                                MainLocators.TRETIY_VOPROS, MainLocators.TRETIY_OTVET),
-                                                               ('Только начиная с завтрашнего дня. Но скоро станем расторопнее.',
+                                                               (settings.text_of_reply_4,
                                                                MainLocators.CHETVERTIY_VOPROS, MainLocators.CHETVERTIY_OTVET),
-                                                               ('Пока что нет! Но если что-то срочное — всегда можно позвонить в поддержку по красивому номеру 1010.',
+                                                               (settings.text_of_reply_5,
                                                                MainLocators.PIATIY_VOPROS, MainLocators.PIATIY_OTVET),
-                                                               ('Самокат приезжает к вам с полной зарядкой. Этого хватает на восемь суток — даже если будете кататься без передышек и во сне. Зарядка не понадобится.',
+                                                               (settings.text_of_reply_6,
                                                                MainLocators.SHESTOY_VOPROS, MainLocators.SHESTOY_OTVET),
-                                                               ('Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.',
+                                                               (settings.text_of_reply_7,
                                                                MainLocators.SEDMOY_VOPROS, MainLocators.SEDMOY_OTVET),
-                                                               ('Да, обязательно. Всем самокатов! И Москве, и Московской области.',
+                                                               (settings.text_of_reply_8,
                                                                MainLocators.VOSMOY_VOPROS, MainLocators.VOSMOY_OTVET)])
-    def test_check_the_text_of_the_hidden_fild(self, text_of_reply, locator, reply):
-        self.driver.get(settings.MAIN_PAGE_URL)
-        first_question_opens = VoprosiOVazhnom(self.driver)
+    def test_check_the_text_of_the_hidden_fild(self, driver, text_of_reply, locator, reply):
+        first_question_opens = VoprosiOVazhnom(driver)
         assert first_question_opens.check_text_of_the_reply(locator, reply) == text_of_reply
-    @classmethod
-    def teardown_class(cls):
-        cls.driver.quit()
+
+
