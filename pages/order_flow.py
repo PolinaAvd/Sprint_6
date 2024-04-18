@@ -121,11 +121,11 @@ class Zakazat(BasePage):
         self.driver.find_element(*OrderFlowLocators.BUTTON_SAMOKAT).click()
         return self.driver.current_url
 
+
     @allure.step('Проверяем Переход на страницу яндекс')
     def push_yandex(self):
         base_page = BasePage(self.driver)
         base_page.open_main_page()
-        original_window = (self.driver.current_window_handle)
         self.driver.find_element(*OrderFlowLocators.YANDEX_LOGO).click()
         WebDriverWait(self.driver, 3).until(EC.number_of_windows_to_be(2))
         for window_handle in self.driver.window_handles:

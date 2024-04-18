@@ -3,8 +3,6 @@ import pytest
 from pages.order_flow import Zakazat
 import settings
 
-
-
 class TestZakazat:
 
 

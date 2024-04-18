@@ -1,7 +1,6 @@
 import allure
 from pages.base_page import BasePage
-import settings
-import pytest
+
 
 class VoprosiOVazhnom(BasePage):
 

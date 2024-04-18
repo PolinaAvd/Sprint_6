@@ -1,5 +1,4 @@
 
-from locators.main_page_locators import MainLocators
 
 text_of_question_1 = 'Сколько это стоит? И как оплатить?'
 text_of_question_2 = 'Хочу сразу несколько самокатов! Так можно?'

@@ -24,7 +24,6 @@ class TestVoprosiOVazhnom:
                                                             MainLocators.SEDMOY_VOPROS),
                                                            (settings.text_of_question_8,
                                                             MainLocators.VOSMOY_VOPROS)])
-
     def test_check_text_of_question(self, driver, text_of_question, locator):
         question_text = VoprosiOVazhnom(driver)
         assert question_text.get_text_of_the_question(locator) == text_of_question
