@@ -26,7 +26,8 @@ class TestVoprosiOVazhnom:
                                                             MainLocators.VOSMOY_VOPROS)])
     def test_check_text_of_question(self, driver, text_of_question, locator):
         question_text = VoprosiOVazhnom(driver)
-        assert question_text.get_text_of_the_question(locator) == text_of_question
+        element = question_text.get_text_of_the_question(locator)
+        assert element == text_of_question
 
 
     @pytest.mark.parametrize('text_of_reply, locator, reply', [(settings.text_of_reply_1,
@@ -47,6 +48,7 @@ class TestVoprosiOVazhnom:
                                                                MainLocators.VOSMOY_VOPROS, MainLocators.VOSMOY_OTVET)])
     def test_check_the_text_of_the_hidden_fild(self, driver, text_of_reply, locator, reply):
         first_question_opens = VoprosiOVazhnom(driver)
-        assert first_question_opens.check_text_of_the_reply(locator, reply) == text_of_reply
+        element = first_question_opens.check_text_of_the_reply(locator, reply)
+        assert element == text_of_reply
 
 

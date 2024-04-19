@@ -14,22 +14,19 @@ class Zakazat(BasePage):
 
     @allure.step('Проверяем верхнюю кнопку Заказать')
     def push_the_upper_button_zakazat_start_order(self):
-        base_page = BasePage(self.driver)
-        base_page.open_main_page()
+        self.open_main_page()
         self.driver.find_element(*OrderFlowLocators.UPPER_ZAKAZAT).click()
-        base_page = BasePage(self.driver)
-        base_page.visible_dlya_kogo_samokat()
+        self.visible_dlya_kogo_samokat()
         return self.driver.current_url
 
 
     @allure.step('Проверяем нижнюю кнопку Заказать')
     def push_the_lower_button_zakazat_start_order(self):
-        base_page = BasePage(self.driver)
-        base_page.open_main_page()
+        self.open_main_page()
         element = self.driver.find_element(*OrderFlowLocators.LOWER_ZAKAZAT)
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
         self.driver.find_element(*OrderFlowLocators.LOWER_ZAKAZAT).click()
-        base_page.visible_dlya_kogo_samokat()
+        self.visible_dlya_kogo_samokat()
         return self.driver.current_url
 
 
@@ -89,8 +86,7 @@ class Zakazat(BasePage):
 
     @allure.step('Проверяем полный флоу оформления заказа')
     def fill_the_fields_of_the_order(self, name, surname, address, phone, date, comment):
-        base_page = BasePage(self.driver)
-        base_page.open_order_page()
+        self.open_order_page()
         self.set_name(name)
         self.set_surname(surname)
         self.set_address(address)
@@ -115,8 +111,7 @@ class Zakazat(BasePage):
 
     @allure.step('Проверяем нажатие на кнопку Самокат')
     def push_samokat_button(self, name, surname, address, phone, date, comment):
-        base_page = BasePage(self.driver)
-        base_page.open_order_page()
+        self.open_order_page()
         self.fill_the_fields_of_the_order(name, surname, address, phone, date, comment)
         self.driver.find_element(*OrderFlowLocators.BUTTON_SAMOKAT).click()
         return self.driver.current_url
@@ -124,8 +119,7 @@ class Zakazat(BasePage):
 
     @allure.step('Проверяем Переход на страницу яндекс')
     def push_yandex(self):
-        base_page = BasePage(self.driver)
-        base_page.open_main_page()
+        self.open_main_page()
         self.driver.find_element(*OrderFlowLocators.YANDEX_LOGO).click()
         WebDriverWait(self.driver, 3).until(EC.number_of_windows_to_be(2))
         for window_handle in self.driver.window_handles:
